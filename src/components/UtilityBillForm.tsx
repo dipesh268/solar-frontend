@@ -43,7 +43,7 @@ const handleSubmit = async () => {
     //   setIsSubmitting(false);
     //   return;
     // }
-
+    console.log(formData.location);
     // Create FormData for the backend
     const formDataToSend = new FormData();
     formDataToSend.append('personalInfo', JSON.stringify(formData.personalInfo));
