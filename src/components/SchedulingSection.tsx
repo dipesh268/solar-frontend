@@ -73,7 +73,7 @@ const SchedulingSection = ({ formData, setFormData, onNext, onPrev }: Scheduling
       };
 
       if (formData.customerId) {
-        const response = await fetch(`http://localhost:5000/api/customers/api/customers/${formData.customerId}`, {
+        const response = await fetch(`https://solar-backend-production.up.railway.app/api/customers/${formData.customerId}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -89,6 +89,9 @@ const SchedulingSection = ({ formData, setFormData, onNext, onPrev }: Scheduling
             scheduledTime: selectedTime
           }));
           onNext();
+        }
+        else{
+          console.log("Not submit");
         }
       }
     } catch (error) {
