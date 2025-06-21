@@ -50,7 +50,7 @@ const UtilityBillForm = ({ formData, setFormData, onNext, onPrev }: UtilityBillF
 
       console.log('Sending request to backend...');
 
-      const response = await fetch('http://localhost:5000/api/customers', {
+      const response = await fetch('https://solar-backend-production.up.railway.app/', {
         method: 'POST',
         body: formDataToSend,
       });
