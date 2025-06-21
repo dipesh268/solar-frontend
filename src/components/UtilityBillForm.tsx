@@ -47,7 +47,7 @@ const handleSubmit = async () => {
     // Create FormData for the backend
     const formDataToSend = new FormData();
     formDataToSend.append('personalInfo', JSON.stringify(formData.personalInfo));
-    formDataToSend.append('location', JSON.stringify(formData.location));
+    formDataToSend.append('location', formData.location);
     formDataToSend.append('zipCode', formData.zipCode);
     formDataToSend.append('utilityBill', uploadedFile);
 
