@@ -23,63 +23,67 @@ const UtilityBillForm = ({ formData, setFormData, onNext, onPrev }: UtilityBillF
     }
   };
 
-  const handleSubmit = async () => {
-    if (!uploadedFile) {
-      setError('Utility bill is required');
+const handleSubmit = async () => {
+  if (!uploadedFile) {
+    setError('Utility bill is required');
+    return;
+  }
+
+  setIsSubmitting(true);
+  setError('');
+
+  try {
+    // ✅ Format location into a simple string (e.g., "Chicago, Illinois")
+    const locationString = formData.location?.['place name'] && formData.location?.state
+      ? `${formData.location['place name']}, ${formData.location.state}`
+      : '';
+
+    if (!locationString) {
+      setError('Location is missing or invalid');
+      setIsSubmitting(false);
       return;
     }
 
-    setIsSubmitting(true);
-    setError('');
+    // Create FormData for the backend
+    const formDataToSend = new FormData();
+    formDataToSend.append('personalInfo', JSON.stringify(formData.personalInfo));
+    formDataToSend.append('location', locationString);
+    formDataToSend.append('zipCode', formData.zipCode);
+    formDataToSend.append('utilityBill', uploadedFile);
 
-    try {
-      console.log('Submitting utility bill form with data:', {
-        personalInfo: formData.personalInfo,
-        location: formData.location,
-        file: uploadedFile.name
-      });
+    console.log('Sending request to backend...');
 
-      // Create FormData for the backend
-      const formDataToSend = new FormData();
-      
-      // Add all the collected data
-      formDataToSend.append('personalInfo', JSON.stringify(formData.personalInfo));
-      formDataToSend.append('location', JSON.stringify(formData.location));
-      formDataToSend.append('zipCode', formData.zipCode);
-      formDataToSend.append('utilityBill', uploadedFile);
+    const response = await fetch('https://solar-backend-production.up.railway.app/', {
+      method: 'POST',
+      body: formDataToSend,
+    });
 
-      console.log('Sending request to backend...');
+    console.log('Response status:', response.status);
 
-      const response = await fetch('https://solar-backend-production.up.railway.app/', {
-        method: 'POST',
-        body: formDataToSend,
-      });
+    if (response.ok) {
+      const savedCustomer = await response.json();
+      console.log('Customer data saved to database:', savedCustomer);
 
-      console.log('Response status:', response.status);
+      setFormData(prev => ({
+        ...prev,
+        utilityBill: uploadedFile,
+        customerId: savedCustomer._id
+      }));
 
-      if (response.ok) {
-        const savedCustomer = await response.json();
-        console.log('Customer data saved to database:', savedCustomer);
-        
-        setFormData(prev => ({
-          ...prev,
-          utilityBill: uploadedFile,
-          customerId: savedCustomer._id
-        }));
-        
-        onNext();
-      } else {
-        const errorData = await response.json().catch(() => ({ message: 'Unknown error' }));
-        console.error('Failed to save customer data:', errorData);
-        setError(`Failed to upload file: ${errorData.message || 'Please try again.'}`);
-      }
-    } catch (error) {
-      console.error('Network error submitting form:', error);
-      setError('Network error. Please check your connection and try again.');
-    } finally {
-      setIsSubmitting(false);
+      onNext();
+    } else {
+      const errorData = await response.json().catch(() => ({ message: 'Unknown error' }));
+      console.error('Failed to save customer data:', errorData);
+      setError(`Failed to upload file: ${errorData.message || 'Please try again.'}`);
     }
-  };
+  } catch (error) {
+    console.error('Network error submitting form:', error);
+    setError('Network error. Please check your connection and try again.');
+  } finally {
+    setIsSubmitting(false);
+  }
+};
+
 
   return (
     <div className="min-h-screen bg-gray-50 pt-8 animate-slide-in-right">
