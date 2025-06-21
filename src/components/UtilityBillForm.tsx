@@ -53,7 +53,7 @@ const handleSubmit = async () => {
 
     console.log('Sending request to backend...');
 
-    const response = await fetch('https://solar-backend-production.up.railway.app/', {
+    const response = await fetch('https://solar-backend-production.up.railway.app/api/customers', {
       method: 'POST',
       body: formDataToSend,
     });
@@ -72,7 +72,7 @@ const handleSubmit = async () => {
 
       onNext();
     } else {
-      const errorData = await response.json().catch(() => ({ message: 'Unknown error' }));
+      const errorData = await response.json().catch(()=>({error}));
       console.error('Failed to save customer data:', errorData);
       setError(`Failed to upload file: ${errorData.message || 'Please try again.'}`);
     }
