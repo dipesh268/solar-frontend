@@ -33,21 +33,21 @@ const handleSubmit = async () => {
   setError('');
 
   try {
-    // ✅ Format location into a simple string (e.g., "Chicago, Illinois")
-    const locationString = formData.location?.['place name'] && formData.location?.state
-      ? `${formData.location['place name']}, ${formData.location.state}`
-      : '';
+    // // ✅ Format location into a simple string (e.g., "Chicago, Illinois")
+    // const locationString = formData.location?.['place name'] && formData.location?.state
+    //   ? `${formData.location['place name']}, ${formData.location.state}`
+    //   : '';
 
-    if (!locationString) {
-      setError('Location is missing or invalid');
-      setIsSubmitting(false);
-      return;
-    }
+    // if (!locationString) {
+    //   setError('Location is missing or invalid');
+    //   setIsSubmitting(false);
+    //   return;
+    // }
 
     // Create FormData for the backend
     const formDataToSend = new FormData();
     formDataToSend.append('personalInfo', JSON.stringify(formData.personalInfo));
-    formDataToSend.append('location', locationString);
+     formDataToSend.append('personalInfo', JSON.stringify(formData.personalInfo));
     formDataToSend.append('zipCode', formData.zipCode);
     formDataToSend.append('utilityBill', uploadedFile);
 
