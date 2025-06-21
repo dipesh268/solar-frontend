@@ -24,7 +24,7 @@ const Admin = () => {
 
   const fetchCustomers = async () => {
     try {
-      const response = await fetch('https://solar-backend-production.up.railway.app');
+      const response = await fetch('https://solar-backend-production.up.railway.app/api/customers');
       if (response.ok) {
         const data = await response.json();
         setCustomers(data);
@@ -54,7 +54,7 @@ const Admin = () => {
 
   const downloadUtilityBill = async (customerId: string, fileName: string) => {
     try {
-      const response = await fetch(`https://solar-backend-production.up.railway.app/${customerId}/file`);
+      const response = await fetch(`https://solar-backend-production.up.railway.app/api/customers/${customerId}/file`);
       if (response.ok) {
         const blob = await response.blob();
         const url = window.URL.createObjectURL(blob);
@@ -74,7 +74,7 @@ const Admin = () => {
   const deleteCustomer = async (customerId: string) => {
     if (window.confirm('Are you sure you want to delete this customer record?')) {
       try {
-        const response = await fetch(`https://solar-backend-production.up.railway.app/${customerId}`, {
+        const response = await fetch(`https://solar-backend-production.up.railway.app/api/customers/${customerId}`, {
           method: 'DELETE',
         });
         if (response.ok) {

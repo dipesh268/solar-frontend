@@ -24,7 +24,7 @@ const SavingsReportSection = ({ formData, setFormData, onNext, onPrev }: Savings
     
     try {
       if (formData.customerId) {
-        const response = await fetch(`https://solar-backend-production.up.railway.app/${formData.customerId}`, {
+        const response = await fetch(`https://solar-backend-production.up.railway.app/api/customers/${formData.customerId}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
