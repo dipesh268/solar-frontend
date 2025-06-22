@@ -48,6 +48,16 @@ const EducationSection = ({ onNext, onPrev }: EducationSectionProps) => {
               </p>
             </div>
 
+            <div className="bg-gradient-to-br from-white to-slate-50 p-8 rounded-2xl shadow-xl animate-slide-in-right border border-slate-200 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2" style={{ animationDelay: '0.4s' }}>
+              <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-700 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg animate-bounce-in" style={{ animationDelay: '0.4s' }}>
+                <Shield className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-xl font-bold mb-4 text-slate-800">Energy Independence</h3>
+              <p className="text-slate-600">
+                Protect yourself from rising utility rates and power outages with your own energy source.
+              </p>
+            </div>
+
             <div className="bg-gradient-to-br from-white to-slate-50 p-8 rounded-2xl shadow-xl animate-scale-in border border-slate-200 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2" style={{ animationDelay: '0.2s' }}>
               <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-700 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg animate-bounce-in" style={{ animationDelay: '0.2s' }}>
                 <Zap className="w-8 h-8 text-white" />
@@ -58,15 +68,7 @@ const EducationSection = ({ onNext, onPrev }: EducationSectionProps) => {
               </p>
             </div>
 
-            <div className="bg-gradient-to-br from-white to-slate-50 p-8 rounded-2xl shadow-xl animate-slide-in-right border border-slate-200 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2" style={{ animationDelay: '0.4s' }}>
-              <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-700 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg animate-bounce-in" style={{ animationDelay: '0.4s' }}>
-                <Shield className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-xl font-bold mb-4 text-slate-800">Energy Independence</h3>
-              <p className="text-slate-600">
-                Protect yourself from rising utility rates and power outages with your own energy source.
-              </p>
-            </div>
+            
           </div>
 
           {/* CTA Button */}

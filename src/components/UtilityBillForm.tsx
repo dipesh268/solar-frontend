@@ -142,15 +142,23 @@ const handleSubmit = async () => {
             </div>
           </div>
 
-          <Button 
-            onClick={handleSubmit}
-            disabled={!uploadedFile || isSubmitting}
-            className="w-full bg-orange-600 hover:bg-orange-700 text-white font-medium py-4 px-4 rounded-xl text-lg mt-8 disabled:opacity-50 animate-slide-in-bottom"
-          >
-            {isSubmitting ? 'Uploading...' : 'Continue'}
-          </Button>
+          <div className="h-24" /> {/* Spacer to prevent content from being hidden behind the button */}
+
+
+
         </div>
       </div>
+      <div className="fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-md border-t border-gray-200 p-4 shadow-lg z-50 animate-slide-in-bottom">
+  <div className="max-w-md mx-auto">
+    <Button 
+      onClick={handleSubmit}
+      disabled={!uploadedFile || isSubmitting}
+      className="w-full bg-orange-600 hover:bg-orange-700 text-white font-medium py-4 px-4 rounded-xl text-lg transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:transform-none"
+    >
+      {isSubmitting ? 'Uploading...' : 'Continue'}
+    </Button>
+  </div>
+</div>
     </div>
   );
 };

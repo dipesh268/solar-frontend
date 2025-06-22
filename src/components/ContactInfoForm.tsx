@@ -134,16 +134,24 @@ const ContactInfoForm = ({ formData, setFormData, onNext, onPrev }: ContactInfoF
               {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
             </div>
 
-            <Button 
-              onClick={handleSubmit}
-              disabled={!phone || !email}
-              className="w-full bg-purple-600 hover:bg-purple-700 text-white font-medium py-4 px-4 rounded-xl text-lg mt-6 disabled:opacity-50 animate-slide-in-bottom"
-            >
-              Continue
-            </Button>
+            
+
           </div>
         </div>
       </div>
+      <div className="h-24" /> {/* Spacer so input fields are not hidden behind fixed button */}
+
+<div className="fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-md border-t border-gray-200 p-4 shadow-lg z-50 animate-slide-in-bottom">
+  <div className="max-w-md mx-auto">
+    <Button 
+      onClick={handleSubmit}
+      disabled={!phone || !email}
+      className="w-full bg-purple-600 hover:bg-purple-700 text-white font-medium py-4 px-4 rounded-xl text-lg transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:transform-none"
+    >
+      Continue
+    </Button>
+  </div>
+</div>
     </div>
   );
 };

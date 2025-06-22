@@ -284,15 +284,20 @@ const SchedulingSection = ({ formData, setFormData, onNext, onPrev }: Scheduling
         )}
 
         {/* Submit Button */}
-        <div className="mt-8 text-center animate-slide-in-bottom">
-          <Button 
-            onClick={handleScheduleSubmit}
-            disabled={!selectedDate || !selectedTime || isSubmitting}
-            className="bg-slate-700 hover:bg-slate-800 text-white font-semibold py-4 px-8 rounded-full text-lg transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:transform-none shadow-lg"
-          >
-            {isSubmitting ? 'Confirming Appointment...' : 'Confirm Appointment'}
-          </Button>
-        </div>
+       <div className="h-24" /> {/* Spacer to prevent content overlap */}
+
+<div className="fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-md border-t border-slate-200 p-4 shadow-lg animate-slide-in-bottom z-50">
+  <div className="max-w-4xl mx-auto text-center">
+    <Button 
+      onClick={handleScheduleSubmit}
+      disabled={!selectedDate || !selectedTime || isSubmitting}
+      className="w-full bg-slate-700 hover:bg-slate-800 text-white font-semibold py-4 px-8 rounded-full text-lg transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:transform-none"
+    >
+      {isSubmitting ? 'Confirming Appointment...' : 'Confirm Appointment'}
+    </Button>
+  </div>
+</div>
+
       </div>
     </div>
   );

@@ -108,17 +108,23 @@ const SavingsReportSection = ({ formData, setFormData, onNext, onPrev }: Savings
               </div>
             </RadioGroup>
 
-            <div className="text-center animate-slide-in-bottom">
-              <Button 
-                onClick={handleSubmit}
-                disabled={!deliveryMethod || isSubmitting}
-                className="bg-slate-700 hover:bg-slate-800 text-white font-semibold py-4 px-8 rounded-full text-lg transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:transform-none shadow-lg"
-              >
-                {isSubmitting ? 'Saving Preference...' : 'Continue to Scheduling'}
-              </Button>
-            </div>
+            
           </CardContent>
         </Card>
+        <div className="h-24" /> {/* spacer to avoid overlap */}
+
+                <div className="fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-md border-t border-slate-200 p-4 shadow-lg animate-slide-in-bottom z-50">
+                  <div className="max-w-2xl mx-auto">
+                    <Button 
+                      onClick={handleSubmit}
+                      disabled={!deliveryMethod || isSubmitting}
+                      className="w-full bg-slate-700 hover:bg-slate-800 text-white font-semibold py-4 px-8 rounded-full text-lg transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:transform-none"
+                    >
+                      {isSubmitting ? 'Saving Preference...' : 'Continue to Scheduling'}
+                    </Button>
+                  </div>
+                </div>
+
       </div>
     </div>
   );
