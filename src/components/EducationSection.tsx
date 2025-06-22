@@ -72,7 +72,14 @@ const EducationSection = ({ onNext, onPrev }: EducationSectionProps) => {
           </div>
 
           {/* CTA Button */}
-          <Button 
+          
+        </div>
+      </div>
+       <div className="h-24" /> {/* Spacer to prevent content overlap */}
+      
+      <div className="fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-md border-t border-slate-200 p-4 shadow-lg animate-slide-in-bottom z-50">
+        <div className="max-w-4xl mx-auto text-center">
+         <Button 
             onClick={onNext}
             size="lg"
             className="bg-gradient-to-r from-slate-600 to-slate-800 hover:from-slate-700 hover:to-slate-900 text-white font-bold text-lg px-8 py-4 rounded-full transition-all duration-300 transform hover:scale-105 shadow-xl animate-slide-in-bottom border border-slate-400"
